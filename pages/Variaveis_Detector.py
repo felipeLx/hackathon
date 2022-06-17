@@ -1,9 +1,8 @@
-from operator import concat
-from pyexpat import features
+import numpy as np
 import pandas as pd
 import streamlit as st
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
@@ -19,14 +18,13 @@ df = pd.read_csv("pages/models/data.csv")
 #print(df.isna().sum())
 #print(df.info())
 df = df.iloc[:,0:32]
-print(df.info())
+# df['diagnisis_int'] = np.where(df['diagnosis'] == 'M', 1, 0)
+# print(df.info())
 
 #cabeçalho
 st.subheader('Informações dos dados')
 
-
 #dados de entrada
-
 X= df.iloc[:, 2:32]
 Y= df['diagnosis']
 
@@ -114,10 +112,24 @@ dtc.fit(X_train, y_train)
 #Acuracia
 st.subheader('Acurácia do modelo')
 st.write(accuracy_score(y_test, dtc.predict(x_test)) * 100)
+
 #Previsao
 prediction = dtc.predict(user_input_variables)
-print(prediction)
+target_name = ['B', 'M']
+result_cross = str((dtc.predict_proba(user_input_variables)[:,0]* 100).round(2))
+result_cross = result_cross.replace('[', '').replace(']', '') 
+result_cross_str = str(result_cross) + '%'
+print('result_cross', result_cross_str)
+result_report = classification_report(user_input_variables, y_test, target_names=target_name)
+print(result_report)
+
+result = ''
+if prediction == 'B':
+    result = 'Benigno'
+else:
+    result = 'Maligno'
+
 
 c = st.container()
 c.subheader('Previsão: ')
-c.metric(prediction)
+c.metric("Resultado", result + ' (' + result_cross_str + ')')
