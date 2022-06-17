@@ -40,7 +40,7 @@ if uploaded_file is not None:
     # display image
     input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
     input_arr = np.array([input_arr])
-    c.image(file_bytes, channels="gray")
+    c.image(file_bytes, channels="RGB")
 
     #resized = mobilenet_v2_preprocess_input(resized)
     # img_reshape = resized[np.newaxis,...]
@@ -48,13 +48,14 @@ if uploaded_file is not None:
     Genrate_pred = c.button("Generate Prediction")    
     if Genrate_pred:
         model = loadIDCModel()
+        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
+        prediction = probability_model.predict(input_arr)
         # model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-        predictions = model.predict(input_arr)
-        print(predictions)
-        c.write(predictions)
-        print(json.dumps(predictions, indent=4))
-        for prediction in predictions:
-            print(prediction)
+        #predictions = model.predict(input_arr)
+        print(prediction)
+        c.write(prediction)
+        print(json.dumps(prediction, indent=4))
+        
         
         # st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
 
