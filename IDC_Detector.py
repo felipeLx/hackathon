@@ -2,10 +2,11 @@ import cv2
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-import tensorflow.keras.backend as K
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
+from tensorflow import keras
+from keras.models import load_model
+from keras import backend as K
+from keras.preprocessing import image
+from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 from streamlit.logger import get_logger
 
 LOGGER = get_logger(__name__)
@@ -22,7 +23,7 @@ def loadIDCModel():
   return model_idc, session
 
 st.markdown('<h1 style="text-align: center;">Identificar câncer de mama</h1>', unsafe_allow_html=True)
-st.title('Identificação de IDC e Metastases por imagens, usando rede neural, e identificação por variáveis')
+st.subheader('Identificação de IDC e Metastases por imagens, usando rede neural, e identificação por variáveis')
 
 c = st.container()
 c.title('Identificar IDC')
