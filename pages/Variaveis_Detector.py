@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
 #Titulo
-st.write("""
+st.title("""
 Prevendo Câncer\n
 App que utiliza machine learn para prever possível Câncer de mama
 Fonte: 
