@@ -50,7 +50,7 @@ if uploaded_file is not None:
             value = ((prediction[0][1])*100).round(2)
         
         c.write(value)
-        c.metric('Predição', result, delta=value, delta_color='normal')
+        c.metric('Predição', result, delta=value, delta_color='if (result == "Benigno/Normal") { "green" } else { "red" }')
         # c.write(prediction)
         
 def IDC_Detector():
