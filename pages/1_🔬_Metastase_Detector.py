@@ -21,14 +21,15 @@ uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"
 if uploaded_file is not None:
     # transform image to numpy array
     file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(96,96), grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
-    input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
-    input_arr = np.array([input_arr])
+    
     c.image(file_bytes, channels="RGB")
     
     Genrate_pred = c.button("Gerar Predição")
     if Genrate_pred:
         model = loadMetModel()
-        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax(), ...])
+        input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
+        input_arr = np.array([input_arr])
+        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
         prediction = probability_model.predict(input_arr)
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
         result = dict_pred[np.argmax(prediction)]
