@@ -33,7 +33,7 @@ if uploaded_file is not None:
         new_model = probability_model.compile(optimizer="rmsprop",
         loss="sparse_categorical_crossentropy",
         metrics=["sparse_categorical_accuracy"],)
-        prediction = new_model.evaluate(input_arr)
+        prediction = new_model.predict(input_arr)
         c.write(prediction)
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
         result = dict_pred[np.argmax(prediction)]
