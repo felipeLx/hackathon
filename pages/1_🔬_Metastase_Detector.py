@@ -13,9 +13,7 @@ st.sidebar.header("# Análise de imagens 🔬")
 @st.cache(allow_output_mutation=True)
 def loadMetModel():
   model_met = load_model('pages/models/Metastatic_model.h5', compile=False)
- # model_met._make_predict_function()
   model_met.summary()
-  # session = K.get_session()
   return model_met
 
 c = st.container()

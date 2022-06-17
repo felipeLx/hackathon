@@ -1,11 +1,7 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from tensorflow import keras
 from keras.models import load_model
-from keras import backend as K
-from keras.preprocessing import image
-from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 from streamlit.logger import get_logger
 
 st.set_page_config(page_title="Invasive Ductal Carcinoma", page_icon="🕵️‍♀️")
