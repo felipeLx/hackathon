@@ -9,10 +9,10 @@ from keras.preprocessing import image
 from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 from streamlit.logger import get_logger
 
-LOGGER = get_logger(__name__)
-
 def run():
     st.set_page_config(page_title="Cancer de mama Detector", page_icon="📈")
+
+LOGGER = get_logger(__name__)
 
 @st.cache(allow_output_mutation=True)
 def loadIDCModel():
