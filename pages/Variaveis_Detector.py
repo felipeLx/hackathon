@@ -9,8 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 #Titulo
 st.title("""
 Prevendo Câncer\n
-App que utiliza machine learn para prever possível Câncer de mama
-Fonte: 
+App que utiliza machine learn para prever possível Câncer de mama de acordo com os dados de um exame.
 """)
 
 #dataset
@@ -99,7 +98,6 @@ def get_user_data():
 
     features= pd.DataFrame(user_data, index=[0])
     return features
-user_input_variables= get_user_data()
 
 #Grafico
 #graf = st.bar_chart(user_input_variables)
@@ -113,6 +111,16 @@ dtc.fit(X_train, y_train)
 # st.subheader('Acurácia do modelo')
 # st.write(accuracy_score(y_test, dtc.predict(x_test)) * 100)
 
+# result_report = classification_report(user_input_variables, y_test, target_names=target_name)
+# print(result_report)
+
+
+c = st.container()
+c.subheader('Previsão: ')
+generate_pred = c.button("Gerar Previsão")    
+if generate_pred:
+    user_input_variables= get_user_data()
+
 #Previsao
 prediction = dtc.predict(user_input_variables)
 target_name = ['B', 'M']
@@ -120,8 +128,6 @@ result_cross = str((dtc.predict_proba(user_input_variables)[:,0]* 100).round(2))
 result_cross = result_cross.replace('[', '').replace(']', '') 
 result_cross_str = str(result_cross) + '%'
 print('result_cross', result_cross_str)
-# result_report = classification_report(user_input_variables, y_test, target_names=target_name)
-# print(result_report)
 
 result = ''
 if prediction == 'B':
@@ -129,7 +135,4 @@ if prediction == 'B':
 else:
     result = 'Maligno'
 
-
-c = st.container()
-c.subheader('Previsão: ')
 c.metric("Resultado", result + ' (' + result_cross_str + ')')
