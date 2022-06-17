@@ -33,7 +33,7 @@ uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"
 if uploaded_file is not None:
     # Convert the file to an opencv image.
     #file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-    file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(96,96), grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
+    file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(50,50), grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
     # opencv_image = cv2.imdecode(file_bytes, 1)
     # opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
     #resized = cv2.resize(opencv_image,(224,224))
