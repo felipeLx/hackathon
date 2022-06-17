@@ -9,8 +9,8 @@ from keras.preprocessing import image
 from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 from streamlit.logger import get_logger
 
-def run():
-    st.set_page_config(page_title="Cancer de mama Detector", page_icon="📈")
+#def run():
+ #   st.set_page_config(page_title="Cancer de mama Detector", page_icon="📈")
 
 LOGGER = get_logger(__name__)
 
@@ -69,7 +69,8 @@ selected_page = st.sidebar.selectbox("Selecione a Página", page_names_to_funcs.
 page_names_to_funcs[selected_page]()
 
 # K.set_session(session)
-
+model = loadIDCModel()
+"""
 if __name__ == '__main__':
     run()
-    model = loadIDCModel()
+"""
