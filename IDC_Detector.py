@@ -54,7 +54,6 @@ if uploaded_file is not None:
         #predictions = model.predict(input_arr)
         print(prediction)
         c.write(prediction)
-        print(json.dumps(prediction, indent=4))
         
         
         # st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
