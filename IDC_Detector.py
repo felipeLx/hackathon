@@ -45,8 +45,17 @@ if uploaded_file is not None:
 
     Genrate_pred = st.button("Generate Prediction")    
     if Genrate_pred:
-        prediction = model.predict(img_reshape).argmax()
+        model = loadIDCModel()
+        predictions = model.predict(img_reshape).data()
+        for prediction in predictions:
+            print(prediction)
+        
         # st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
+
+#model = loadIDCModel()
+#predictions = model.predict(img_reshape).data()
+#for prediction in predictions:
+#    print(prediction)
 
 def IDC_Detector():
     st.sidebar.markdown("# Análise de imagens")
@@ -67,6 +76,3 @@ page_names_to_funcs = {
 
 selected_page = st.sidebar.selectbox("Selecione a Página", page_names_to_funcs.keys())
 page_names_to_funcs[selected_page]()
-
-# K.set_session(session)
-model = loadIDCModel()

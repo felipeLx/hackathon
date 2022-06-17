@@ -124,7 +124,7 @@ if generate_pred:
 
     #Previsao
     prediction = dtc.predict(user_input_variables)
-    target_name = ['B', 'M']
+    # target_name = ['B', 'M']
     result_cross = str((dtc.predict_proba(user_input_variables)[:,0]* 100).round(2))
     result_cross = result_cross.replace('[', '').replace(']', '') 
     result_cross_str = str(result_cross) + '%'
