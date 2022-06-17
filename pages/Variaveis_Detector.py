@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
+st.set_page_config(page_title="Detectar por Variáveis", page_icon="🧬")
+
 #Titulo
 st.title("""
 Prevendo Câncer\n

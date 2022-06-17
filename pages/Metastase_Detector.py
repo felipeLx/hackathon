@@ -8,6 +8,8 @@ from keras import backend as K
 from keras.preprocessing import image
 from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 
+st.set_page_config(page_title="Metastatic Cancer", page_icon="🔬")
+
 @st.cache(allow_output_mutation=True)
 def loadMetModel():
   model_met = load_model('pages/models/Metastatic_model.h5', compile=False)

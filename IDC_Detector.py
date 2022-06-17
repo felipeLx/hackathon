@@ -10,8 +10,7 @@ from keras.preprocessing import image
 from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 from streamlit.logger import get_logger
 
-#def run():
- #   st.set_page_config(page_title="Cancer de mama Detector", page_icon="📈")
+st.set_page_config(page_title="Invasive Ductal Carcinoma", page_icon="🕵️‍♀️")
 
 LOGGER = get_logger(__name__)
 
@@ -31,38 +30,20 @@ c.title('Identificar IDC')
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
-    # Convert the file to an opencv image.
-    #file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+    # transform image to numpy array
     file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(50,50), grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
-    # opencv_image = cv2.imdecode(file_bytes, 1)
-    # opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
-    #resized = cv2.resize(opencv_image,(224,224))
-    # display image
     input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
     input_arr = np.array([input_arr])
     c.image(file_bytes, channels="RGB")
-
-    #resized = mobilenet_v2_preprocess_input(resized)
-    # img_reshape = resized[np.newaxis,...]
 
     Genrate_pred = c.button("Generate Prediction")    
     if Genrate_pred:
         model = loadIDCModel()
         probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
         prediction = probability_model.predict(input_arr)
-        # model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-        #predictions = model.predict(input_arr)
-        print(prediction)
+        
         c.write(prediction)
         
-        
-        # st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
-
-#model = loadIDCModel()
-#predictions = model.predict(img_reshape).data()
-#for prediction in predictions:
-#    print(prediction)
-
 def IDC_Detector():
     st.sidebar.markdown("# Análise de imagens")
 
