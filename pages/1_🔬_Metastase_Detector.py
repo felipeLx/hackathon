@@ -6,11 +6,13 @@ from keras.models import load_model
 st.set_page_config(page_title="Metastatic Cancer", page_icon="🔬")
 st.sidebar.header("# Análise de imagens 🔬")
 
-@st.cache(allow_output_mutation=True)
-def loadMetModel():
-  model_met = load_model('pages/models/Metastatic_model.h5', compile=False)
-  model_met.summary()
-  return model_met
+model_met = load_model('models/Metastatic_model.h5')
+
+# @st.cache(allow_output_mutation=True)
+# def loadMetModel():
+#  model_met = load_model('pages/models/Metastatic_model.h5', compile=False)
+#  model_met.summary()
+#  return model_met
 
 c = st.container()
 c.markdown('# Identificar Metástase 🔬')
@@ -27,7 +29,7 @@ if uploaded_file is not None:
     
     Genrate_pred = c.button("Gerar Predição")
     if Genrate_pred:
-        model = loadMetModel()
+        model = model_met
         probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
         prediction = probability_model.predict(input_arr)
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
