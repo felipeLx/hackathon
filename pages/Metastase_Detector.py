@@ -11,7 +11,7 @@ from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobi
 @st.cache(allow_output_mutation=True)
 def loadMetModel():
   model_met = load_model('../models/Metastase_model.h5', compile=False)
-  model_met._make_predict_function()
+ # model_met._make_predict_function()
   model_met.summary()
   session = K.get_session()
   return model_met, session

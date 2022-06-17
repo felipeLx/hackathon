@@ -17,7 +17,7 @@ def run():
 @st.cache(allow_output_mutation=True)
 def loadIDCModel():
   model_idc = load_model('models/IDC_model.h5', compile=False)
-  model_idc._make_predict_function()
+  # model_idc._make_predict_function()
   model_idc.summary()
   session = K.get_session()
   return model_idc, session
