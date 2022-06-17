@@ -36,7 +36,7 @@ if uploaded_file is not None:
     input_arr = np.array([input_arr])
     c.image(file_bytes, channels="RGB")
 
-    Genrate_pred = c.button("Generate Prediction")    
+    Genrate_pred = c.button("Gerar Predição")    
     if Genrate_pred:
         model = loadIDCModel()
         probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
@@ -49,9 +49,7 @@ if uploaded_file is not None:
         else:
             value = str(((prediction[0][1])*100).round(2)) + '%'
         
-        # c.write(value)
         c.metric('Predição', result, delta=value, delta_color='normal')
-        # c.write(prediction)
         
 def IDC_Detector():
     st.sidebar.markdown("# Análise de imagens 🕵️‍♀️")

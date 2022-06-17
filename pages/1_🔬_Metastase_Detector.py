@@ -22,26 +22,27 @@ def loadMetModel():
 c = st.container()
 c.markdown('# Identificar Metástase 🔬')
 
-
 ### load file
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
-    # Convert the file to an opencv image.
-    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-    opencv_image = cv2.imdecode(file_bytes, 1)
-    opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
-    resized = cv2.resize(opencv_image,(224,224))
-    # display image
-    st.image(opencv_image, channels="RGB")
-
-    resized = mobilenet_v2_preprocess_input(resized)
-    img_reshape = resized[np.newaxis,...]
-
-    Genrate_pred = st.button("Generate Prediction")    
+    # transform image to numpy array
+    file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(50,50), grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
+    input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
+    input_arr = np.array([input_arr])
+    c.image(file_bytes, channels="RGB")
+    
+    Genrate_pred = c.button("Gerar Predição")
     if Genrate_pred:
-        prediction = model.predict(img_reshape).argmax()
-        # st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
-
-model_met = loadMetModel()
-# K.set_session(session)
+        model = loadMetModel()
+        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
+        prediction = probability_model.predict(input_arr)
+        dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
+        result = dict_pred[np.argmax(prediction)]
+        value = 0
+        if result == 'Benigno/Normal':
+            value = str(((prediction[0][0])*100).round(2)) + '%'
+        else:
+            value = str(((prediction[0][1])*100).round(2)) + '%'
+        
+        c.metric('Predição', result, delta=value, delta_color='normal')
