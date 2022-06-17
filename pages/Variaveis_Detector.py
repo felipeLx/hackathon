@@ -14,15 +14,11 @@ Fonte:
 """)
 
 #dataset
-df = pd.read_csv("C:/Users/mateu/Downloads/archive/data.csv")
+df = pd.read_csv("models/data.csv")
 
 #cabeçalho
 st.subheader('Informações dos dados')
 
-#Nome
-user_input = st.sidebar.text_input('Digite seu nome')
-
-st.write('Paciente: ', user_input)
 
 #dados de entrada
 
@@ -76,6 +72,6 @@ st.subheader('Acurácia do modelo')
 st.write(accuracy_score(y_test, dtc.predict(x_test)) * 100)
 #Previsao
 prediction = dtc.predict(user_input_variables)
-
+print(prediction)
 st.subheader('Previsão: ')
 st.write(prediction)
