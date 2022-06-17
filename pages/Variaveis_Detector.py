@@ -14,7 +14,7 @@ Fonte:
 """)
 
 #dataset
-df = pd.read_csv("./models/data.csv")
+df = pd.read_csv("models/data.csv")
 
 #cabeçalho
 st.subheader('Informações dos dados')
