@@ -68,8 +68,8 @@ page_names_to_funcs = {
 selected_page = st.sidebar.selectbox("Selecione a Página", page_names_to_funcs.keys())
 page_names_to_funcs[selected_page]()
 
-model = loadIDCModel()
 # K.set_session(session)
 
 if __name__ == '__main__':
     run()
+    model = loadIDCModel()
