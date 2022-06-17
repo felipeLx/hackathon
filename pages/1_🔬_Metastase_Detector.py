@@ -2,6 +2,7 @@ import numpy as np
 import streamlit as st
 import tensorflow as tf
 from keras.models import load_model
+from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img
 
 st.set_page_config(page_title="Metastatic Cancer", page_icon="🔬")
 st.sidebar.header("# Análise de imagens 🔬")
@@ -19,17 +20,19 @@ c.markdown('# Identificar Metástase 🔬')
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
-    # transform image to numpy array
-    file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(96,96), grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
+    test_datagen = ImageDataGenerator(rescale=1./255)
+    file_bytes = test_datagen.load_img(uploaded_file, target_size=(96,96), 
+        grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
+    # file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(96,96), grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
     
     c.image(file_bytes, channels="RGB")
     
     Genrate_pred = c.button("Gerar Predição")
     if Genrate_pred:
         model = loadMetModel()
-        input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
+        input_arr = img_to_array(file_bytes)
         input_arr = np.array([input_arr])
-        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
+        probability_model = tf.keras.Sequential([model, tf.keras.layers.core.Softmax()])
         probability_model.compile(optimizer="rmsprop",
         loss="sparse_categorical_crossentropy",
         metrics=["sparse_categorical_accuracy"],)
