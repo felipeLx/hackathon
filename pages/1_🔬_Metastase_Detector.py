@@ -20,7 +20,8 @@ def loadMetModel():
   return model_met
 
 c = st.container()
-c.title('Identificar Metástase')
+c.markdown('# Identificar Metástase 🔬')
+
 
 ### load file
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])

@@ -119,7 +119,7 @@ user_input_variables= get_user_data(radius_mean, texture_mean, perimeter_mean, a
 
 c = st.container()
 
-c.subheader('Informações dos dados')
+c.markdown('# Análise de variáveis 🧬')
 c.dataframe(user_input_variables)
 
 c.subheader('Previsão: ')
