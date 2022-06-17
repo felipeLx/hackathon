@@ -18,9 +18,7 @@ LOGGER = get_logger(__name__)
 @st.cache(allow_output_mutation=True)
 def loadIDCModel():
   model_idc = load_model('models/IDC_model.h5', compile=False)
-  # model_idc._make_predict_function()
   model_idc.summary()
-  # session = K.get_session()
   return model_idc
 
 st.markdown('<h1 style="text-align: center;">Identificar câncer de mama</h1>', unsafe_allow_html=True)
@@ -35,20 +33,22 @@ uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"
 if uploaded_file is not None:
     # Convert the file to an opencv image.
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+    # file_bytes = open('https://raw.githubusercontent.com/vbookshelf/Breast-Cancer-Analyzer/master/assets/normal.png', 'rb').read()
     opencv_image = cv2.imdecode(file_bytes, 1)
     opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
     resized = cv2.resize(opencv_image,(224,224))
     # display image
-    st.image(opencv_image, channels="RGB")
+    c.image(opencv_image, channels="RGB")
 
     resized = mobilenet_v2_preprocess_input(resized)
     img_reshape = resized[np.newaxis,...]
 
-    Genrate_pred = st.button("Generate Prediction")    
+    Genrate_pred = c.button("Generate Prediction")    
     if Genrate_pred:
         model = loadIDCModel()
-        predictions = model.predict(img_reshape)
+        predictions = model.predict(img_reshape).argmax()
         print(predictions)
+        c.write(predictions)
         print(json.dumps(predictions, indent=4))
         for prediction in predictions:
             print(prediction)
