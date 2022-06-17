@@ -8,7 +8,7 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 
 @st.cache(allow_output_mutation=True)
-def load_models():
+def loadMetModel():
   model_met = load_model('../models/Metastase_model.h5', compile=False)
   model_met._make_predict_function()
   model_met.summary()
@@ -40,5 +40,5 @@ if uploaded_file is not None:
         prediction = model.predict(img_reshape).argmax()
         # st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
 
-model_met, session = load_models()
+model_met, session = loadMetModel()
 K.set_session(session)

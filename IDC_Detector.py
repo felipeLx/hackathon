@@ -14,7 +14,7 @@ def run():
     st.set_page_config(page_title="Cancer de mama Detector", page_icon="📈")
 
 @st.cache(allow_output_mutation=True)
-def load_models():
+def loadIDCModel():
   model_idc = load_model('models/IDC_model.h5', compile=False)
   model_idc._make_predict_function()
   model_idc.summary()
@@ -67,7 +67,7 @@ page_names_to_funcs = {
 selected_page = st.sidebar.selectbox("Selecione a Página", page_names_to_funcs.keys())
 page_names_to_funcs[selected_page]()
 
-model, session = load_model()
+model, session = loadIDCModel()
 K.set_session(session)
 
 if __name__ == '__main__':
