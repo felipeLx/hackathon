@@ -49,7 +49,7 @@ if uploaded_file is not None:
     if Genrate_pred:
         model = loadIDCModel()
         probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
-        prediction = probability_model.predict(input_arr).argmax()
+        prediction = probability_model.predict(input_arr).data()
         # model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
         #predictions = model.predict(input_arr)
         print(prediction)
