@@ -1,3 +1,4 @@
+import json
 import cv2
 import numpy as np
 import streamlit as st
@@ -46,7 +47,9 @@ if uploaded_file is not None:
     Genrate_pred = st.button("Generate Prediction")    
     if Genrate_pred:
         model = loadIDCModel()
-        predictions = model.predict(img_reshape).data()
+        predictions = model.predict(img_reshape)
+        print(predictions)
+        print(json.dumps(predictions, indent=4))
         for prediction in predictions:
             print(prediction)
         
