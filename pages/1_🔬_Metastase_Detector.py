@@ -29,8 +29,8 @@ if uploaded_file is not None:
         model = loadMetModel()
         input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
         input_arr = np.array([input_arr])
-        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
-        prediction = probability_model.predict(input_arr, force=True)
+        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()], force=True)
+        prediction = probability_model.predict(input_arr)
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
         result = dict_pred[np.argmax(prediction)]
         value = 0
