@@ -70,7 +70,3 @@ page_names_to_funcs[selected_page]()
 
 # K.set_session(session)
 model = loadIDCModel()
-"""
-if __name__ == '__main__':
-    run()
-"""
