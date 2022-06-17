@@ -135,8 +135,8 @@ if generate_pred:
 
     result = ''
     if prediction == 'B':
-        result = 'Benigno'
+        result = 'Benigno/Normal'
     else:
         result = 'Maligno'
 
-    c.metric("Resultado", result + ' (' + result_cross_str + ')')
+    c.metric("Resultado", result, delta= result_cross_str, delta_color='normal')
