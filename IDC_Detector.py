@@ -35,18 +35,20 @@ if uploaded_file is not None:
     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
     # file_bytes = open('https://raw.githubusercontent.com/vbookshelf/Breast-Cancer-Analyzer/master/assets/normal.png', 'rb').read()
     opencv_image = cv2.imdecode(file_bytes, 1)
-    opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
-    resized = cv2.resize(opencv_image,(224,224))
+    # opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
+    #resized = cv2.resize(opencv_image,(224,224))
     # display image
+    tensor = tf.fromPixels(opencv_image).resizeNearestNeighbor([96,96]).toFloat().div(tf.scalar(255.0)).expandDims()
     c.image(opencv_image, channels="RGB")
 
-    resized = mobilenet_v2_preprocess_input(resized)
-    img_reshape = resized[np.newaxis,...]
+    #resized = mobilenet_v2_preprocess_input(resized)
+    # img_reshape = resized[np.newaxis,...]
 
     Genrate_pred = c.button("Generate Prediction")    
     if Genrate_pred:
         model = loadIDCModel()
-        predictions = model.predict(img_reshape).data()
+        # model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+        predictions = model.predict(tensor).data()
         print(predictions)
         c.write(predictions)
         print(json.dumps(predictions, indent=4))
