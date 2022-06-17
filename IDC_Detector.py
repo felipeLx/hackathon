@@ -40,7 +40,7 @@ if uploaded_file is not None:
     # display image
     print(file_bytes)
     print(opencv_image)
-    tensor = tf.fromPixels(file_bytes).resizeNearestNeighbor([96,96]).toFloat().div(tf.scalar(255.0)).expandDims()
+    tensor = tf.browser.fromPixels(file_bytes).resizeNearestNeighbor([96,96]).toFloat().div(tf.scalar(255.0)).expandDims()
     c.image(opencv_image, channels="RGB")
 
     #resized = mobilenet_v2_preprocess_input(resized)
