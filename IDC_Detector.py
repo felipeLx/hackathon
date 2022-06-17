@@ -19,8 +19,8 @@ def loadIDCModel():
   model_idc = load_model('models/IDC_model.h5', compile=False)
   # model_idc._make_predict_function()
   model_idc.summary()
-  session = K.get_session()
-  return model_idc, session
+  # session = K.get_session()
+  return model_idc
 
 st.markdown('<h1 style="text-align: center;">Identificar câncer de mama</h1>', unsafe_allow_html=True)
 st.subheader('Identificação de IDC e Metastases por imagens, usando rede neural, e identificação por variáveis')
@@ -68,8 +68,8 @@ page_names_to_funcs = {
 selected_page = st.sidebar.selectbox("Selecione a Página", page_names_to_funcs.keys())
 page_names_to_funcs[selected_page]()
 
-model, session = loadIDCModel()
-K.set_session(session)
+model = loadIDCModel()
+# K.set_session(session)
 
 if __name__ == '__main__':
     run()

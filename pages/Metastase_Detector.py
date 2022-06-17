@@ -13,8 +13,8 @@ def loadMetModel():
   model_met = load_model('../models/Metastase_model.h5', compile=False)
  # model_met._make_predict_function()
   model_met.summary()
-  session = K.get_session()
-  return model_met, session
+  # session = K.get_session()
+  return model_met
 
 c = st.container()
 c.title('Identificar Metastase')
@@ -41,5 +41,5 @@ if uploaded_file is not None:
         prediction = model.predict(img_reshape).argmax()
         # st.title("Predicted Label for the image is {}".format(map_dict [prediction]))
 
-model_met, session = loadMetModel()
-K.set_session(session)
+model_met = loadMetModel()
+# K.set_session(session)
