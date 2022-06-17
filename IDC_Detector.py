@@ -49,8 +49,8 @@ if uploaded_file is not None:
         else:
             value = prediction[0][1]
         
-        c.metric('Predição', result, delta=value, delta_format='.2%')
-        c.write(prediction)
+        c.metric('Predição', result, delta=value, delta_color='normal')
+        # c.write(prediction)
         
 def IDC_Detector():
     st.sidebar.markdown("# Análise de imagens 🕵️‍♀️")
