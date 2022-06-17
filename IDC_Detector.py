@@ -41,7 +41,8 @@ if uploaded_file is not None:
         model = loadIDCModel()
         probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
         prediction = probability_model.predict(input_arr)
-        
+        dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
+        c.metric('Prediction', dict_pred[np.argmax(prediction)])
         c.write(prediction)
         
 def IDC_Detector():
