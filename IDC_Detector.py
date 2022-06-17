@@ -45,15 +45,16 @@ if uploaded_file is not None:
         c.write(prediction)
         
 def IDC_Detector():
-    st.sidebar.markdown("# Análise de imagens")
+    st.markdown("# Análise de imagens 🕵️‍♀️")
+    st.sidebar.markdown("# Análise de imagens 🕵️‍♀️")
 
 def Metastase_Detector():
-    st.markdown("# Identificar Metastases")
-    st.sidebar.markdown("# Análise de imagens")
+    st.markdown("# Identificar Metastases 🔬")
+    st.sidebar.markdown("# Análise de imagens 🔬")
 
 def Variaveis_Detector():
-    st.markdown("# Identificar Câncer de mama")
-    st.sidebar.markdown("# Análise de variáveis")
+    st.markdown("# Identificar Câncer de mama 🧬")
+    st.sidebar.markdown("# Análise de variáveis 🧬")
 
 page_names_to_funcs = {
     "Identificar IDC": IDC_Detector,
