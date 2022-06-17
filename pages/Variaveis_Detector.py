@@ -110,8 +110,8 @@ dtc = RandomForestClassifier(n_estimators = 10, criterion='entropy', random_stat
 dtc.fit(X_train, y_train)
 
 #Acuracia
-st.subheader('Acurácia do modelo')
-st.write(accuracy_score(y_test, dtc.predict(x_test)) * 100)
+# st.subheader('Acurácia do modelo')
+# st.write(accuracy_score(y_test, dtc.predict(x_test)) * 100)
 
 #Previsao
 prediction = dtc.predict(user_input_variables)
@@ -120,8 +120,8 @@ result_cross = str((dtc.predict_proba(user_input_variables)[:,0]* 100).round(2))
 result_cross = result_cross.replace('[', '').replace(']', '') 
 result_cross_str = str(result_cross) + '%'
 print('result_cross', result_cross_str)
-result_report = classification_report(user_input_variables, y_test, target_names=target_name)
-print(result_report)
+# result_report = classification_report(user_input_variables, y_test, target_names=target_name)
+# print(result_report)
 
 result = ''
 if prediction == 'B':
