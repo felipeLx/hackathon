@@ -38,7 +38,7 @@ if uploaded_file is not None:
     # opencv_image = cv2.cvtColor(opencv_image, cv2.COLOR_BGR2RGB)
     #resized = cv2.resize(opencv_image,(224,224))
     # display image
-    tensor = tf.fromPixels(opencv_image).resizeNearestNeighbor([96,96]).toFloat().div(tf.scalar(255.0)).expandDims()
+    tensor = tf.fromPixels(file_bytes).resizeNearestNeighbor([96,96]).toFloat().div(tf.scalar(255.0)).expandDims()
     c.image(opencv_image, channels="RGB")
 
     #resized = mobilenet_v2_preprocess_input(resized)
