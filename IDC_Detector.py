@@ -24,7 +24,7 @@ st.markdown('<h1 style="text-align: center;">Identificar câncer de mama</h1>', 
 st.subheader('Identificação de IDC e Metastases por imagens, usando rede neural, e identificação por variáveis')
 
 c = st.container()
-c.title('Identificar IDC')
+c.markdown("# Identificar IDC 🕵️‍♀️")
 
 ### load file
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])
@@ -45,11 +45,10 @@ if uploaded_file is not None:
         c.write(prediction)
         
 def IDC_Detector():
-    st.markdown("# Identificar IDC 🕵️‍♀️")
     st.sidebar.markdown("# Análise de imagens 🕵️‍♀️")
 
 def Metastase_Detector():
-    st.markdown("# Identificar Metastases 🔬")
+    st.markdown("# Identificar Metástase 🔬")
     st.sidebar.markdown("# Análise de imagens 🔬")
 
 def Variaveis_Detector():

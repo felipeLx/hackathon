@@ -7,7 +7,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
 st.set_page_config(page_title="Detectar por Variáveis", page_icon="🧬")
-st.markdown("# Análise de variáveis")
 st.sidebar.header("Análise de variáveis")
 
 #Titulo

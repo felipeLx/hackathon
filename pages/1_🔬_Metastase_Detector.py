@@ -9,8 +9,7 @@ from keras.preprocessing import image
 from keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
 
 st.set_page_config(page_title="Metastatic Cancer", page_icon="🔬")
-st.markdown("# Identificar Metastases")
-st.sidebar.header("Identificar Metastases")
+st.sidebar.header("# Análise de imagens 🔬")
 
 @st.cache(allow_output_mutation=True)
 def loadMetModel():
@@ -21,7 +20,7 @@ def loadMetModel():
   return model_met
 
 c = st.container()
-c.title('Identificar Metastase')
+c.title('Identificar Metástase')
 
 ### load file
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])
