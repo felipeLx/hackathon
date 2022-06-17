@@ -19,8 +19,6 @@ def loadMetModel():
 c = st.container()
 c.title('Identificar Metastase')
 
-model = tf.keras.models.load_model("../models/Metastatic_model.h5", compile=False)
-
 ### load file
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])
 
