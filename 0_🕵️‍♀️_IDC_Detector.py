@@ -45,7 +45,7 @@ if uploaded_file is not None:
         c.write(prediction)
         
 def IDC_Detector():
-    st.markdown("# Análise de imagens 🕵️‍♀️")
+    st.markdown("# Identificar IDC 🕵️‍♀️")
     st.sidebar.markdown("# Análise de imagens 🕵️‍♀️")
 
 def Metastase_Detector():
