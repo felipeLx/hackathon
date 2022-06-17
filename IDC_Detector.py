@@ -45,12 +45,12 @@ if uploaded_file is not None:
         result = dict_pred[np.argmax(prediction)]
         value = 0
         if result == 'Benigno/Normal':
-            value = ((prediction[0][0])*100).round(2)
+            value = ((prediction[0][0])*100).round(2).percent_format()
         else:
-            value = ((prediction[0][1])*100).round(2)
+            value = ((prediction[0][1])*100).round(2).percent_format()
         
-        c.write(value)
-        c.metric('Predição', result, delta=value, delta_color='if (result == "Benigno/Normal") { "green" } else { "red" }')
+        # c.write(value)
+        c.metric('Predição', result, delta=value, delta_color='normal')
         # c.write(prediction)
         
 def IDC_Detector():
