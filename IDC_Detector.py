@@ -46,7 +46,7 @@ if uploaded_file is not None:
     Genrate_pred = c.button("Generate Prediction")    
     if Genrate_pred:
         model = loadIDCModel()
-        predictions = model.predict(img_reshape).argmax()
+        predictions = model.predict_generator(img_reshape).data()
         print(predictions)
         c.write(predictions)
         print(json.dumps(predictions, indent=4))
