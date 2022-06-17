@@ -45,9 +45,9 @@ if uploaded_file is not None:
         result = dict_pred[np.argmax(prediction)]
         value = 0
         if result == 'Benigno/Normal':
-            value = (prediction[0][0])*100
+            value = ((prediction[0][0])*100).round(2)
         else:
-            value = (prediction[0][1])*100
+            value = ((prediction[0][1])*100).round(2)
         
         c.write(value)
         c.metric('Predição', result, delta=value, delta_color='normal')
