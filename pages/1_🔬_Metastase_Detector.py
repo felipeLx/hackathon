@@ -2,7 +2,7 @@ import numpy as np
 import streamlit as st
 import tensorflow as tf
 from keras.models import load_model
-from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img
+from keras.preprocessing.image import ImageDataGenerator
 
 st.set_page_config(page_title="Metastatic Cancer", page_icon="🔬")
 st.sidebar.header("# Análise de imagens 🔬")
