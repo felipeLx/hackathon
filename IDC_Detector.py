@@ -49,6 +49,7 @@ if uploaded_file is not None:
         else:
             value = prediction[0][1]
         
+        c.write(value)
         c.metric('Predição', result, delta=value, delta_color='normal')
         # c.write(prediction)
         
