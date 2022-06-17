@@ -10,7 +10,7 @@ LOGGER = get_logger(__name__)
 
 @st.cache(allow_output_mutation=True)
 def loadIDCModel():
-  model_idc = load_model('models/IDC_model.h5', compile=False)
+  model_idc = load_model('models/IDC_model.h5', compile=True)
   model_idc.summary()
   return model_idc
 
