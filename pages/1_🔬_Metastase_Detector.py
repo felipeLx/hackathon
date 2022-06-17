@@ -6,7 +6,7 @@ from keras.models import load_model
 st.set_page_config(page_title="Metastatic Cancer", page_icon="🔬")
 st.sidebar.header("# Análise de imagens 🔬")
 
-model_met = load_model('models/Metastatic_model.h5', compile=False)
+model_met = load_model('pages/models/Metastatic_model.h5', compile=False)
 
 # @st.cache(allow_output_mutation=True)
 # def loadMetModel():
