@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from tensorflow.keras import backend as K
+import tensorflow.keras.backend as K
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2,preprocess_input as mobilenet_v2_preprocess_input
@@ -16,7 +16,7 @@ def run():
 @st.cache(allow_output_mutation=True)
 def load_models():
   model_idc = load_model('models/IDC_model.h5', compile=False)
-  # model_idc._make_predict_function()
+  model_idc._make_predict_function()
   model_idc.summary()
   session = K.get_session()
   return model_idc, session
