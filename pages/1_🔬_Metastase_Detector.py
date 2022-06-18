@@ -29,7 +29,7 @@ if uploaded_file is not None:
     Genrate_pred = c.button("Gerar Predição")
     if Genrate_pred:
         model = loadMetModel()
-        probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
+        probability_model = tf.keras.core.Sequential([model, tf.keras.layers.Softmax()])
         prediction = probability_model.predict(input_arr)
         
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
