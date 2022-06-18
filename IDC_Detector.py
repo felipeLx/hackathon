@@ -25,18 +25,19 @@ uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"
 
 if uploaded_file is not None:
     # transform image to numpy array
-    file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(50,50), 
+    image_uploaded = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(50,50), 
         grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
-    input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
-    input_arr = np.array([input_arr])
-    c.image(file_bytes, channels="RGB")
+    # image_uploaded = tf.keras.applications.mobilenet.preprocess_input(image_uploaded)
+    input_arr = tf.keras.preprocessing.image.img_to_array(image_uploaded)
+    imput_arr = np.expand_dims(input_arr, axis=0)
+    imput_arr /= 255
+    c.image(image_uploaded, channels="RGB")
 
     Genrate_pred = c.button("Gerar Predição")    
     if Genrate_pred:
         model = loadIDCModel()
         probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
-        probability_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-        prediction = probability_model.predict_generator(input_arr)
+        prediction = probability_model.predict(input_arr.reshape(1,50,50,3))
         
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
         result = dict_pred[np.argmax(prediction)]
