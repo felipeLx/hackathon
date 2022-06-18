@@ -35,7 +35,8 @@ if uploaded_file is not None:
     if Genrate_pred:
         model = loadIDCModel()
         probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
-        prediction = probability_model.predict(input_arr)
+        prediction = probability_model.predict_generator(input_arr)
+        prediction.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
         
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
         result = dict_pred[np.argmax(prediction)]
