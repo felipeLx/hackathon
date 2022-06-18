@@ -27,8 +27,6 @@ if uploaded_file is not None:
     Genrate_pred = c.button("Gerar Predição")
     if Genrate_pred:
         model = loadMetModel()
-        input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
-        input_arr = np.array([input_arr])
         probability_model = tf.keras.Sequential([model, tf.keras.layers.core.Softmax()])
         probability_model.compile(optimizer="rmsprop",
         loss="sparse_categorical_crossentropy",
