@@ -21,10 +21,10 @@ c.markdown('# Identificar Metástase 🔬')
 uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"])
 
 if uploaded_file is not None:
-    image_uploaded = image.load_img(uploaded_file, target_size=(96,96), 
+    image_uploaded = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(96,96), 
         grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
     # image_uploaded = tf.keras.applications.mobilenet.preprocess_input(image_uploaded)
-    input_arr = image.img_to_array(image_uploaded)
+    input_arr = tf.keras.preprocessing.image.img_to_array(image_uploaded)
     imput_arr = np.expand_dims(input_arr, axis=0)
     imput_arr /= 255
     c.image(image_uploaded, channels="RGB")
