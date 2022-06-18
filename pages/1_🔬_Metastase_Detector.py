@@ -28,11 +28,8 @@ if uploaded_file is not None:
     if Genrate_pred:
         model = loadMetModel()
         probability_model = tf.keras.Sequential([model, tf.keras.layers.core.Softmax()])
-        probability_model.compile(optimizer="rmsprop",
-        loss="sparse_categorical_crossentropy",
-        metrics=["sparse_categorical_accuracy"],)
         prediction = probability_model.predict(input_arr)
-        c.write(prediction)
+        
         dict_pred = {0: 'Benigno/Normal', 1: 'Maligno'}
         result = dict_pred[np.argmax(prediction)]
         value = 0
