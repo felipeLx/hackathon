@@ -20,7 +20,7 @@ uploaded_file = c.file_uploader("Escolha uma imagem", type=["png", "jpg", "jpeg"
 
 if uploaded_file is not None:
     file_bytes = tf.keras.preprocessing.image.load_img(uploaded_file, target_size=(96,96), 
-        grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False)
+        grayscale = False, interpolation = 'nearest', color_mode = 'rgb', keep_aspect_ratio = False).pixels.reshape(1,96,96,3).astype(np.float32).divide(255).expand_dims(0)
     # file_bytes = tf.keras.applications.mobilenet.preprocess_input(file_bytes)
     input_arr = tf.keras.preprocessing.image.img_to_array(file_bytes)
     input_arr = np.array([input_arr])
